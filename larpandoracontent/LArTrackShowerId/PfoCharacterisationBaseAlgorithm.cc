@@ -62,15 +62,15 @@ StatusCode PfoCharacterisationBaseAlgorithm::Run()
             {
                 pfoMetadata.m_particleId = MU_MINUS;
 
-                if (m_showerPfoListName == pfoListName)
-                    showersToTracks.push_back(pPfo);
+                //if (m_showerPfoListName == pfoListName)
+                   //showersToTracks.push_back(pPfo);
             }
             else
             {
                 pfoMetadata.m_particleId = E_MINUS;
 
-                if (m_trackPfoListName == pfoListName)
-                    tracksToShowers.push_back(pPfo);
+                //if (m_trackPfoListName == pfoListName)
+                    //tracksToShowers.push_back(pPfo);
             }
 
             if (pPfo->GetParticleId() != pfoMetadata.m_particleId.Get())
@@ -94,11 +94,13 @@ StatusCode PfoCharacterisationBaseAlgorithm::Run()
         }
     }
 
+    /*
     if (!tracksToShowers.empty())
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, m_trackPfoListName, m_showerPfoListName, tracksToShowers));
 
     if (!showersToTracks.empty())
         PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, PandoraContentApi::SaveList(*this, m_showerPfoListName, m_trackPfoListName, showersToTracks));
+	*/
 
     return STATUS_CODE_SUCCESS;
 }
@@ -137,8 +139,8 @@ StatusCode PfoCharacterisationBaseAlgorithm::ReadSettings(const TiXmlHandle xmlH
     PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle, "TrackPfoListName", m_trackPfoListName));
     m_inputPfoListNames.push_back(m_trackPfoListName);
 
-    PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle, "ShowerPfoListName", m_showerPfoListName));
-    m_inputPfoListNames.push_back(m_showerPfoListName);
+    //PANDORA_RETURN_RESULT_IF(STATUS_CODE_SUCCESS, !=, XmlHelper::ReadValue(xmlHandle, "ShowerPfoListName", m_showerPfoListName));
+    //m_inputPfoListNames.push_back(m_showerPfoListName);
 
     PANDORA_RETURN_RESULT_IF_AND_IF(
         STATUS_CODE_SUCCESS, STATUS_CODE_NOT_FOUND, !=, XmlHelper::ReadValue(xmlHandle, "UpdateClusterIds", m_updateClusterIds));
